@@ -41,6 +41,7 @@ Route::get('/papers/','PapersController@index');
 Route::get('/papers/create','PapersController@create');
 Route::post('/papers/create','PapersController@add');
 Route::get('/papers/{id}','PapersController@addQuestions');
+Route::post('/papers/{id}','PapersController@submitQuestions');
 
 
 

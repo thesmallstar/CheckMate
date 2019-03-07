@@ -50,4 +50,97 @@ class PapersController extends Controller
         return view("papers/questions", compact('paper'));
 
       }
+
+
+      public function SubmitQuestions($id)
+      {
+
+       $paper = \App\Paper::find($id);
+       
+         
+           for( $i=1;$i<=$paper->numQ;$i++)
+              {
+                //Adding Questions 
+              // dd(request());
+                 $question = new \App\question;
+                 $question->name= request('name');
+                 $question->paper_id=$id;
+                 $question->number=$i;
+                 $question->type=request('type'.strval($i));
+                 $question->evaltype=request('typec'.strval($i));
+                 $question->marks=request('marks'.strval($i));
+                 $question->save();
+                
+                 //Adding Answer
+                 $answer= new \App\keyword;
+                 $answer->type=0;
+                 $answer->question_id=$question->id;
+                 $answer->mark=0;
+                 $answer->answer=request('answer'.strval($i));
+                  $answer->save();
+                   
+                 //Adding Exact Keywords withmarks
+
+                 $exact = request('exact'.strval($i));
+                 $exactm = request('emarks'.strval($i));
+                 $exactarray = explode (",", $exact); 
+                 $exactmarks = explode (",", $exactm); 
+
+                 foreach ($exactarray as $e)
+                        {   $j=0;
+                            $exact= new \App\keyword;
+                            $exact->type=1;
+                            $exact->question_id=$question->id;
+                            $exact->mark=$exactmarks[$j];
+                            $exact->answer=$e;
+                            $exact->save();
+                            $j++;
+                      }
+
+                      $sym = request('syn'.strval($i));
+                      $symm = request('smarks'.strval($i));
+                      $symarray = explode (",", $sym); 
+                      $symmarks = explode (",", $symm); 
+     
+                      foreach ($symarray as $e)
+                             {   $j=0;
+                                 $sym= new \App\keyword;
+                                 $sym->type=2;
+                                 $sym->question_id=$question->id;
+                                 $sym->mark=$symmarks[$j];
+                                 $sym->answer=$e;
+                                 $sym->save();
+                                 $j++;
+                           }
+                           
+                
+                   //Adding Exact Keywords withmarks
+        
+                   $res = request('Res'.strval($i));
+                   $resm = request('rmarks'.strval($i));
+                   $resarray = explode (",", $res); 
+                   $resmarks = explode (",", $resm); 
+  
+                   foreach ($resarray as $e)
+                          { 
+                              $j=0;
+                              $res= new \App\keyword;
+                              $res->type=3;
+                              $res->question_id=$question->id;
+                              $res->mark=$resmarks[$j];
+                              $res->answer=$e;
+                              $res->save();
+                              $j++;
+                        }
+                        
+
+
+
+
+             }
+
+
+      }
+
+
 }

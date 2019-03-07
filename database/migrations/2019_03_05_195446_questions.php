@@ -13,6 +13,7 @@ class Questions extends Migration
             $table->string('name');
             $table->integer('paper_id');
             $table->integer('type');
+            $table->integer('evaltype');
             $table->integer('number');
             $table->integer('marks'); 
             $table->timestamps();

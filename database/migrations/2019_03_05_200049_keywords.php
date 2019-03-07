@@ -18,7 +18,7 @@ class Keywords extends Migration
             $table->integer('question_id');
             $table->string('answer');
             $table->integer('type');
-            $table->integer('count');
+           // $table->integer('count');
             $table->integer('mark');
             $table->timestamps();
         });

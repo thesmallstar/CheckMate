@@ -25,20 +25,20 @@
                                    
                                             @for ($i = 1; $i <=$paper->numQ; $i++)
                                       <div class="form-group">
-                                       Q{{$i}} <label for="Name">Question</label>
+                                        <label for="Name">Question-<b style="font-size:18px;">{{$i}}</b></label>
                                         <input type="text" class="form-control" name="name" id="name" placeholder="Enter Question here">
                                        <br>
                                         <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                         <label for="type{{$i}}">Question Type</label>
                                                         <select class="form-control" id="type{{$i}}" name="type{{$i}}">
-                                                          <option>Defination/Axiom (One word or One line)</option>
-                                                          <option>Mathematical Problem</option>
-                                                          <option>List Only</option>
-                                                          <option>List and Explain</option>
-                                                          <option>Ordered List</option>
-                                                          <option>Paragragh</option>
-                                                          <option>List/Paragraph</option>
+                                                          <option value="1">Defination/Axiom (One word or One line)</option>
+                                                          <option value="2">Mathematical Problem</option>
+                                                          <option value="3">List Only</option>
+                                                          <option value="4">List and Explain</option>
+                                                          <option value="5">Ordered List</option>
+                                                          <option value="6">Paragragh</option>
+                                                          <option value="7">List/Paragraph</option>
 
                                                         </select>
                                                
@@ -46,9 +46,9 @@
                                                 <div class="form-group col-md-4">
                                                         <label for="typec{{$i}}">Type of Checking</label>
                                                         <select class="form-control" id="typec{{$i}}" name="typec{{$i}}">
-                                                          <option>Exact</option>
-                                                          <option>Lenient Non Exact</option>
-                                                          <option>Non Lenient Non Exact</option>
+                                                          <option value="1">Exact</option>
+                                                          <option value="2">Lenient Non Exact</option>
+                                                          <option value="3">Non Lenient Non Exact</option>
                                                           
 
                                                         </select>
@@ -75,45 +75,43 @@
                                                            
                                                             <div class="form-group col-md-4">
                                                               <label for="Exactmarks{{$i}}">Marks for Exact( ',' Seperated )</label>
-                                                              <input type="number" class="form-control" name="emarks{{$i}}"id="emarks{{$i}}">
+                                                              <input type="text" class="form-control" name="emarks{{$i}}"id="emarks{{$i}}">
                                                             </div>
                                                          </div>         
                                                          <div class="form-row">
                                                                 <div class="form-group col-md-6">
                                                                  
-                                                                        <label for="syn{$i}}">Synonymous Words Needed</label>
+                                                                        <label for="synsyn{{$i}}">Synonymous Words Needed</label>
                                                                   <input type="text" class="form-control" name="syn{{$i}}"id="syn{{$i}}">
                                                                
                                                                 </div>
-                                                               
+
                                                                 <div class="form-group col-md-4">
                                                                   <label for="sMarks{{$i}}">Marks for Synonymous( ',' Seperated )</label>
-                                                                  <input type="number" class="form-control" name="smarks{{$i}}"id="smarks{{$i}}">
+                                                                  <input type="text" class="form-control" name="smarks{{$i}}"id="smarks{{$i}}">
                                                                 </div>
                                                              </div>         
                                                              <div class="form-row">
                                                                     <div class="form-group col-md-6">
                                                                      
                                                                             <label for="Res{{$i}}">Restricted Words </label>
-                                                                      <input type="text" class="form-control" name="Res{{$i}}"id="Res{{$i}}">
-                                                                   
+                                                                      <input type="text" class="form-control" name="Res{{$i}}"id="Res{{$i}}">   
+
                                                                     </div>
-                                                                   
+
                                                                     <div class="form-group col-md-4">
                                                                       <label for="Rmarks{{$i}}">Marks to deduct ( ',' Seperated )</label>
-                                                                      <input type="number" class="form-control" name="rmarks{{$i}}"id="rmarks{{$i}}">
+                                                                      <input type="text" class="form-control" name="rmarks{{$i}}"id="rmarks{{$i}}">
                                                                     </div>
                                                                  </div>          
                                              </div>
-                                             
+
 
                                               
                                     <hr>
                                      @endfor
                                     <button type="submit" class="btn btn-primary" >Add Questions</button>
-                                      
-                                   
-                                </form>
+                                 </form>
                            
 
 
