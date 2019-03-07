@@ -33,6 +33,7 @@ class PapersController extends Controller
           $paper->des=request('des');
           $paper->numQ=request('totalQ');
           $paper->total=request('total');
+          $paper->status=0;
           $paper->Tid= \Auth::user()->id;
           $paper->save();
 
@@ -42,4 +43,11 @@ class PapersController extends Controller
 
     }
 
+     public function addQuestions($id)
+      {
+        $paper = \App\Paper::find($id);
+           
+        return view("papers/questions", compact('paper'));
+
+      }
 }

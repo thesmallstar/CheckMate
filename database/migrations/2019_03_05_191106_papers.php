@@ -18,6 +18,7 @@ class Papers extends Migration
             $table->string('name');
             $table->string('des');
             $table->integer('Tid');
+            $table->integer('status');
             $table->integer('total');
             $table->integer('numQ');
             $table->timestamps();
