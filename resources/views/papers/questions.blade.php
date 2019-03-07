@@ -26,7 +26,7 @@
                                             @for ($i = 1; $i <=$paper->numQ; $i++)
                                       <div class="form-group">
                                         <label for="Name">Question-<b style="font-size:18px;">{{$i}}</b></label>
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter Question here">
+                                        <input type="text" class="form-control" name="name{{$i}}" id="name{{$i}}" placeholder="Enter Question here">
                                        <br>
                                         <div class="form-row">
                                                 <div class="form-group col-md-4">

@@ -57,13 +57,13 @@ class PapersController extends Controller
 
        $paper = \App\Paper::find($id);
        
-         
-           for( $i=1;$i<=$paper->numQ;$i++)
+         //dd($paper->numQ);
+           for( $i=1; $i<=$paper->numQ; $i++)
               {
                 //Adding Questions 
-              // dd(request());
+               //dd(request());
                  $question = new \App\question;
-                 $question->name= request('name');
+                 $question->name= request('name'.strval($i));
                  $question->paper_id=$id;
                  $question->number=$i;
                  $question->type=request('type'.strval($i));
@@ -134,11 +134,11 @@ class PapersController extends Controller
                         }
                         
 
-
-
-
+                       
              }
-
+             $paper->status=1;
+             $paper->save();
+             return redirect('/home');
 
       }
 
