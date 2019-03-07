@@ -12,6 +12,7 @@ class Questions extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('paper_id');
+            $table->integer('type');
             $table->integer('number');
             $table->integer('marks'); 
             $table->timestamps();

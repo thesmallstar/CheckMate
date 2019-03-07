@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Papers extends Migration
+class Images extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class Papers extends Migration
      */
     public function up()
     {
-        Schema::create('papers', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('des');
-            $table->integer('Tid');
-            $table->integer('total');
-            $table->integer('numQ');
+            $table->integer('Sid');
+            $table->integer('paper_id');
+            $table->string('scanned');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class Papers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('papers');
+        Schema::dropIfExists('images');
     }
 }

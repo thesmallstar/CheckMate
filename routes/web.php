@@ -11,13 +11,42 @@
 |
 */
 
+
+//Home Route
 Route::get('/', function () {
     return view('welcome');
 });
 
+
+// Text Recog routes.
 Route::get('/annotate', 'AnnotationController@displayForm');
 Route::post('/annotate', 'AnnotationController@annotateImage');
 
+//Authentication Routes.
 Auth::routes();
 
+
+//----After login routes.----
+
+//Home
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Paper routes
+
+
+//view paper
+Route::get('/papers/','PapersController@index');
+
+//Add a paper
+Route::get('/papers/create','PapersController@create');
+Route::post('/papers/create','PapersController@add');
+
+
+
+
+
+
+
+
+
+
