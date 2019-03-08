@@ -85,9 +85,9 @@ class PapersController extends Controller
                  $exactm = request('emarks'.strval($i));
                  $exactarray = explode (",", $exact); 
                  $exactmarks = explode (",", $exactm); 
-
+                 $j=0;
                  foreach ($exactarray as $e)
-                        {   $j=0;
+                        {  
                             $exact= new \App\keyword;
                             $exact->type=1;
                             $exact->question_id=$question->id;
@@ -101,9 +101,9 @@ class PapersController extends Controller
                       $symm = request('smarks'.strval($i));
                       $symarray = explode (",", $sym); 
                       $symmarks = explode (",", $symm); 
-     
+                      $j=0;
                       foreach ($symarray as $e)
-                             {   $j=0;
+                             {
                                  $sym= new \App\keyword;
                                  $sym->type=2;
                                  $sym->question_id=$question->id;
@@ -120,10 +120,10 @@ class PapersController extends Controller
                    $resm = request('rmarks'.strval($i));
                    $resarray = explode (",", $res); 
                    $resmarks = explode (",", $resm); 
-  
+                   $j=0;
                    foreach ($resarray as $e)
                           { 
-                              $j=0;
+                            
                               $res= new \App\keyword;
                               $res->type=3;
                               $res->question_id=$question->id;
@@ -138,6 +138,7 @@ class PapersController extends Controller
              }
              $paper->status=1;
              $paper->save();
+           //  dd(request());
              return redirect('/home');
 
       }

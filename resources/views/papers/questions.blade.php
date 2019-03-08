@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
@@ -14,7 +14,7 @@
                         Total Marks: <b>{{$paper->total}}</b>
                            
 <hr>
-
+@if($paper->status==0)
                       <h5><b> Questions: </b></h5>
                       <hr>
                           
@@ -123,7 +123,18 @@
                 
                 
                 </div>
+@else
 
+You have added the Questions. 
+View/Edit them here: <a href="{{$paper->id}}/edit/"> Questions</a>
+
+<form class="form-horizontal" enctype="multipart/form-data" method="post" action="/details">
+  <input required type="file" class="form-control" name="images[]" placeholder="address" multiple>
+</form>
+
+
+
+@endif
             </div>
         </div>
     </div>
