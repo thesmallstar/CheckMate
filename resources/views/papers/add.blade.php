@@ -9,7 +9,7 @@
                 <div class="card-header">Add new paper</div>
                 <div class="card-body">
                         <form action="" method="POST">
-                            @csrf
+                            @csrf 
                                 <div class="form-row">
                                   <div class="form-group col-md-6">
                                     <label for="Name">Name of Paper</label>

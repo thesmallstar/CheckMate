@@ -3,7 +3,165 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <style>
+    
+    
+    
+    .block {
+      display: inline;
+    }
+    
+    form {
+      background-color: white;
+    }
+    
+    #formdiv {
+      width: 500px;
+      float: left;
+      text-align: center;
+    }
+    
+    .upload {
+      background-color: #ff0000;
+      border: 1px solid #ff0000;
+      color: #fff;
+      border-radius: 5px;
+      padding: 10px;
+      text-shadow: 1px 1px 0px green;
+      box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.75);
+    }
+    .upload:hover {
+      cursor: pointer;
+      background: #c20b0b;
+      border: 1px solid #c20b0b;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.75);
+    }
+    #file {
+      color: green;
+      padding: 5px;
+    
+      background-color: #f9ffe5;
+    }
+    #upload {
+      margin-left: 45px;
+    }
+    
+    #noerror {
+      color: green;
+      text-align: left;
+    }
+    #error {
+      color: red;
+      text-align: left;
+    }
+    #img {
+      width: 17px;
+      border: none;
+      height: 17px;
+      margin-left: -20px;
+      margin-bottom: 91px;
+    }
+    
+    .abcd {
+      text-align: center;
+    }
+    
+    .abcd img {
+      height: 100px;
+      width: 100px;
+      padding: 5px;
+      border: 1px solid rgb(232, 222, 189);
+    }
+    
+    #formget {
+      float: right;
+    }
+    #img1 {
+      width: 25px;
+      border: none;
+      height: 25px;
+      margin-left: -20px;
+      margin-bottom: 91px;
+    }
+    
+    #files {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    #filediv {
+      height: 100px;
+      width: 100px;
+    }
+    
+    #snackbar {
+      visibility: hidden;
+      min-width: 250px;
+      margin-left: -125px;
+      background-color: #2196f3;
+      color: #fff;
+      text-align: center;
+      border-radius: 2px;
+      padding: 16px;
+      position: fixed;
+      z-index: 1;
+      left: 50%;
+      bottom: 30px;
+    }
+    
+    .show {
+      visibility: visible !important;
+    
+      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+    
+    @-webkit-keyframes fadein {
+      from {
+        bottom: 0;
+        opacity: 0;
+      }
+      to {
+        bottom: 30px;
+        opacity: 1;
+      }
+    }
+    
+    @keyframes fadein {
+      from {
+        bottom: 0;
+        opacity: 0;
+      }
+      to {
+        bottom: 30px;
+        opacity: 1;
+      }
+    }
+    
+    @-webkit-keyframes fadeout {
+      from {
+        bottom: 30px;
+        opacity: 1;
+      }
+      to {
+        bottom: 0;
+        opacity: 0;
+      }
+    }
+    
+    @keyframes fadeout {
+      from {
+        bottom: 30px;
+        opacity: 1;
+      }
+      to {
+        bottom: 0;
+        opacity: 0;
+      }
+    }
+    </style>
   
 
     <!-- CSRF Token -->

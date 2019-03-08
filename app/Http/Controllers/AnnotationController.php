@@ -17,8 +17,9 @@ class AnnotationController extends Controller
     public function annotateImage(Request $request){
       if($request->file('image')){
         //convert image to base64
+        
         $image = base64_encode(file_get_contents($request->file('image')));
-
+         
         //prepare request
         $request = new AnnotateImageRequest();
         $request->setImage($image);
@@ -28,7 +29,7 @@ class AnnotationController extends Controller
         $response = $gcvRequest->annotate();
          dd($response);
        
-        //echo json_encode(["description" => $response->responses[0]->textAnnotations[0]->description]);
+        $i= json_encode(["description" => $response->responses[0]->textAnnotations[0]->description]);
 
       }
     }

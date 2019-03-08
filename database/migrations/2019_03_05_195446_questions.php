@@ -13,6 +13,9 @@ class Questions extends Migration
             $table->string('name');
             $table->integer('paper_id');
             $table->integer('type');
+            $table->integer('numP');
+            $table->integer('numC');
+            $table->integer('sp');
             $table->integer('evaltype');
             $table->integer('number');
             $table->integer('marks'); 

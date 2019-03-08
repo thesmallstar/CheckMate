@@ -1,6 +1,7 @@
 @extends('layouts.app')
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
 @section('content')
+
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -34,7 +35,7 @@
                                                         <select class="form-control" id="type{{$i}}" name="type{{$i}}">
                                                           <option value="1">Defination/Axiom (One word or One line)</option>
                                                           <option value="2">Mathematical Problem</option>
-                                                          <option value="3">List Only</option>
+                                                          <option value="3">Unordered List</option>
                                                           <option value="4">List and Explain</option>
                                                           <option value="5">Ordered List</option>
                                                           <option value="6">Paragragh</option>
@@ -43,21 +44,30 @@
                                                         </select>
                                                
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-">
                                                         <label for="typec{{$i}}">Type of Checking</label>
                                                         <select class="form-control" id="typec{{$i}}" name="typec{{$i}}">
-                                                          <option value="1">Exact</option>
-                                                          <option value="2">Lenient Non Exact</option>
-                                                          <option value="3">Non Lenient Non Exact</option>
+                                                          <option value="1">Exact syntactic</option>
+                                                          <option value="2">Exact non syntactic</option>
+                                                          <option value="3">Lenient Non Exact</option>
+                                                          <option value="4">Non Lenient Non Exact</option>
                                                           
 
                                                         </select>
                                                
                                                 </div>
                                                
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-1">
                                                   <label for="mark{{$i}}">Marks</label>
                                                   <input type="number" class="form-control" name="marks{{$i}}"id="marks{{$i}}">
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                  <label for="numc{{$i}}">Total Points</label>
+                                                  <input type="number" class="form-control" name="numc{{$i}}"id="numc{{$i}}">
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                  <label for="nump{{$i}}">Points to Check</label>
+                                                  <input type="number" class="form-control" name="nump{{$i}}"id="nump{{$i}}">
                                                 </div>
                                              </div>
                                              <div class="form-group">
@@ -124,15 +134,52 @@
                 
                 </div>
 @else
-
+<div style="padding:10px;">
 You have added the Questions. 
 View/Edit them here: <a href="{{$paper->id}}/edit/"> Questions</a>
-
-<form class="form-horizontal" enctype="multipart/form-data" method="post" action="/details">
-  <input required type="file" class="form-control" name="images[]" placeholder="address" multiple>
-</form>
-
-
+              </div>
+              <form method="post" action="{{$paper->id}}/check" enctype="multipart/form-data">
+                {{csrf_field()}}
+              
+                      <div class="input-group control-group increment" >
+                        <input type="file" name="filename[]" class="form-control">
+                        <div class="input-group-btn"> 
+                          <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                        </div>
+                      </div>
+                      <div class="clone hide">
+                        <div class="control-group input-group" style="margin-top:10px" >
+                          <input type="file" name="filename[]" class="form-control">
+                          <div class="input-group-btn"> 
+                            <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                          </div>
+                        </div>
+                      </div>
+              
+                      <button type="submit" class="btn btn-primary" style="margin-top:10px">Submit</button>
+              
+                </form>        
+                </div>
+              
+              
+              <script type="text/javascript">
+              
+              
+                  $(document).ready(function() {
+              
+                    $(".btn-success").click(function(){ 
+                        var html = $(".clone").html();
+                        $(".increment").after(html);
+                    });
+              
+                    $("body").on("click",".btn-danger",function(){ 
+                        $(this).parents(".control-group").remove();
+                    });
+              
+                  });
+              
+              </script>
+              
 
 @endif
             </div>
@@ -140,3 +187,5 @@ View/Edit them here: <a href="{{$paper->id}}/edit/"> Questions</a>
     </div>
 </div>
 @endsection
+
+

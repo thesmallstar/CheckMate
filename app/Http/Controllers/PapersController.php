@@ -61,11 +61,13 @@ class PapersController extends Controller
            for( $i=1; $i<=$paper->numQ; $i++)
               {
                 //Adding Questions 
-               //dd(request());
+              //  /dd(request());
                  $question = new \App\question;
                  $question->name= request('name'.strval($i));
                  $question->paper_id=$id;
                  $question->number=$i;
+                 $question->numP=request('nump'.strval($i));
+                 $question->numC=request('numc'.strval($i));
                  $question->type=request('type'.strval($i));
                  $question->evaltype=request('typec'.strval($i));
                  $question->marks=request('marks'.strval($i));
