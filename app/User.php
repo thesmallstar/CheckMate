@@ -33,4 +33,9 @@ class User extends Authenticatable
 
         return $this->hasmany('\App\paper','Tid');
     }
+
+    public function results()
+    {
+        return $this->belongsToMany('App\result','Sid');
+    }
 }

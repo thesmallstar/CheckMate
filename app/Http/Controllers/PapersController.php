@@ -51,6 +51,16 @@ class PapersController extends Controller
 
       }
 
+      
+     public function viewresult($id)
+     {
+       $paper = \App\Paper::find($id);
+       $results = $paper->results->iska;
+        dd($results);
+       return view("papers/results", compact('paper','results'));
+
+     }
+
 
       public function SubmitQuestions($id)
       {
@@ -142,6 +152,8 @@ class PapersController extends Controller
              $paper->save();
            //  dd(request());
              return redirect('/home');
+
+
 
       }
 

@@ -48,6 +48,8 @@ Route::post('/papers/{id}','PapersController@submitQuestions');
 //Check paper
 Route::post('/papers/{id}/check','CheckController@checkmate');
 
+Route::get('/papers/{id}/result','PapersController@viewresult');
+
 
 
 

@@ -9,6 +9,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "mashape/unirest-php": "^3.0",
         "wapnen/google-cloud-vision-php": "dev-master"
     },
     "require-dev": {
