@@ -9,4 +9,9 @@ class result extends Model
     protected $guarded = [
         
     ];
+
+    public function iska()
+    {
+        return $this->belongsTo('App\user','Sid');
+    }
 }

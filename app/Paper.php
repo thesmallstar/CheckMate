@@ -17,5 +17,12 @@ class Paper extends Model
 
     }
    
+    public function results()
+    {
+
+        return $this->hasmany('\App\result','paper_id');
+
+    }
+   
 
 }

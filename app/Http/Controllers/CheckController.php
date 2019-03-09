@@ -7,9 +7,17 @@ define ("MINMID",0.60);
 use Illuminate\Http\Request;
 
 function spchk($str)
-{
-    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-    return $str;
+{ 
+    $str="hellu hui";
+    $k=str_replace(' ','+',$str);
+    $response = \Unirest\Request::get("https://montanaflynn-spellcheck.p.rapidapi.com/check/?text=".$k,
+    array(
+      "X-RapidAPI-Key" => "57fab39c6cmsha7d7a9a4a717202p1e4403jsn29e1e96daf4f"
+    )
+
+  ); /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+ 
+    return $response->body->suggestion;
 }
 function llemm($str)
 {
@@ -242,14 +250,16 @@ class CheckController extends Controller
   
     
     public function checkmate($id,request $request){
-        dd(request());
+      
+        //$student = \App\user::find(request('roll'));
+        //dd($student);
         $i = "";
         // $answers = preg_split("/((q|Q)[0-9]+:)|([0-9]+:)/", $i);
         // dd($answers);
        // dd($m);
         //convert image to base64
         // $paper = \App\Paper::find($id);
-        // $questions=$paper->questions;     
+         //$questions=$paper->questions;     
         // //dd($m);
         //   foreach($questions as $question)
         //   { 
@@ -307,6 +317,7 @@ class CheckController extends Controller
       $questions=$paper->questions;     
       //dd($m);
       $k = 0;
+      $total=0;
        $m= "";
         foreach($questions as $question)
         { 
@@ -317,13 +328,22 @@ class CheckController extends Controller
             $key = klem($keywords);
             $marks = analyz($refo,$refl,$studo,$studl,$key,$question);
             //echo "hi";
-            
+            $total+=$marks;
             $m=$m.','.(string)$marks;
             $k++;
 
         }
-       echo "$m";
-
+       //echo "$m";
+       $student = \App\user::find(request('roll'));
+       $result= new \App\Result;
+       $result->marks=$m;
+       $result->finalmarks=$total;
+       $result->Sid= $student->id;
+       $result->paper_id=$id;
+       $result->save();
+       
+       session()->flash('msg', 'Paper is Checked successfully.');
+       return back()->withInput();
 }
 
 

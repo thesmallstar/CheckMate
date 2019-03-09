@@ -163,7 +163,15 @@ View/Edit them here: <a href="{{$paper->id}}/edit/"> Questions</a>
               
                 </form>        
                 </div>
-              
+                @if(session('msg'))
+                
+                
+
+                <div class="alert alert-success" style="margin-top:10px;">
+                    <strong>Success!</strong>  {{session('msg')}}
+                 
+                  </div>
+                @endif
               
               <script type="text/javascript">
               
@@ -182,7 +190,7 @@ View/Edit them here: <a href="{{$paper->id}}/edit/"> Questions</a>
                   });
               
               </script>
-              
+                              
 
 @endif
             </div>
