@@ -67,8 +67,41 @@
 
 
                 @else
-
-
+              <div><h3>Your Results:</h3></div>
+              <hr>
+                 
+                    
+            
+               
+                   
+                  
+                     
+                   <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Sr No.</th>
+                          <th scope="col">Paper ID</th>
+                          <th scope="col">Final Marks </th>
+                          <th scope="col">Question Wise Marks</th>
+                        
+                        </tr>
+                      </thead>
+                      <?php  $i=1 ?>    
+                      <tbody>
+                       @foreach ($results as $result)
+                           
+                        <tr>
+                          <th scope="row"><?php echo $i ?></th>
+                         <td> {{ $result-> paper_id }}</td>
+                         <td>  {{ $result-> finalmarks }}</td>
+                         <td>   {{ $result-> marks }}</td>
+                         
+  
+                        </tr>
+                        <?php $i++ ?>
+                        @endforeach
+  
+         
 
                 @endif
             </div>
