@@ -39,6 +39,7 @@ function listconv($str,$question)
         $p = count($stra);
         for ($i=0;$i<$p-1;$i++) $stra[$i] = $stra[$i+1];
 
+        // dd($stra);
         return $stra;
     }
     else{
@@ -64,7 +65,7 @@ function listsort($refo,$studo,$studl)
             if ($s > $max){ $max = $s; $imax = $j;}
             $j++;
         }
-        $stdr[$i] = $stdo[$j];
+        $stdr[$i] = $studo[$j];
         $smscr[$i] = $max; 
         $i++;
     }

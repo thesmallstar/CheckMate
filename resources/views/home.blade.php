@@ -21,6 +21,99 @@
         background-color: #929697;
         border-radius: 10px 10px 0px 0px;">
             <h3 class="boxtitle">Dashboard</h3>
+
+                <div class="alert alert-success" style="margin-top:10px;">
+                    <strong>Success!</strong>  {{session('msg')}}
+                 
+                  </div>
+                @endif
+
+                <div style="padding:20px 0;">
+                    <h4>
+                  Your Papers:
+                    </h4>  
+                </div>
+                
+                  
+                   <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Sr No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Created at</th>
+                        <th scope="col">Number of Questions</th>
+                        <th scope="col">Total Marks</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <?php  $i=1 ?>    
+                    <tbody>
+                     @foreach ($papersgiven as $paper)
+                         
+                      <tr>
+                        <th scope="row"><?php echo $i ?></th>
+                       <td><a href="papers/{{$paper->id}}">{{$paper->name}}</a></td>
+                       <td>{{$paper->created_at->format('d/m/y')}}</td>
+                       <td>{{$paper->numQ}}</td>
+                       <td>{{$paper->total}}</td>
+                       <td>{{$paper->status}}</td>
+                       <td><a href="papers/{{$paper->id}}/result">View Result</a></td>
+
+                      </tr>
+                      <?php $i++ ?>
+                      @endforeach
+
+                  
+         
+                     
+                    </tbody>
+                  </table>
+
+
+
+
+                @else
+              <div><h3>Your Results:</h3></div>
+              <hr>
+                 
+                    
+            
+               
+                   
+                  
+                     
+                   <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Sr No.</th>
+                          <th scope="col">Paper ID</th>
+                          <th scope="col">Final Marks </th>
+                          <th scope="col">Question Wise Marks</th>
+                        
+                        </tr>
+                      </thead>
+                      <?php  $i=1 ?>    
+                      <tbody>
+                       @foreach ($results as $result)
+                           
+                        <tr>
+                          <th scope="row"><?php echo $i ?></th>
+                         <td> {{ $result-> paper_id }}</td>
+                         <td>  {{ $result-> finalmarks }}</td>
+                         <td>   {{ $result-> marks }}</td>
+                         
+  
+                        </tr>
+                        <?php $i++ ?>
+                        @endforeach
+  
+         
+
+                @endif
+            </div>
+
+            </div>
         </div>
         <hr class="hr1">
     </div>
