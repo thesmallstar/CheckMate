@@ -5,7 +5,7 @@
 <body>
     <div class="textbox" style="position: absolute;
         width: 1050px;
-        height: 500px;
+        height: 600px;
         left: 22%;
         top: 243px;
         background: #FFFFFF;
