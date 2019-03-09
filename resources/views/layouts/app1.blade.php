@@ -125,7 +125,7 @@ header a:hover{
         border: none;
         border-radius: 5px;
         color: white;
-        height: 200px;
+        height: 450px;
         width: 950px;
         font-family: 'Roboto';
 }
