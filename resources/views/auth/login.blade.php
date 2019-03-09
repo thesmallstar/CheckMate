@@ -1,90 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link href="layout.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-</head>
-<style>
-    
-body{
-    background-color: #e6f5ff;
-}
+@extends('layouts.app')
 
-header{
-margin-left:-10px;
-margin-right:-8px;
-padding:20px;
-padding-right:40px;
-padding-left:40px;
-height: 90px;
-background: #002756;
-opacity: 0.85;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.links{
-    float:right;
-    color: white;
-    position: relative;
-    top:-7px;
-    text-decoration:none;
-    padding-right:40px;
-    padding-left:40px;
-    overflow:hidden;
-    padding-top:20px;
-    padding-bottom:20px;
-    font-size:20px;
-    display: block;
-    font-family:'abel';
-}
-
-header a:hover{
-    background-color:#e4e6e7;
-    color: #002756;
-  }
-
-.title{
-position: relative;
-float:left;
-font-family: Megrim;
-font-weight: 550;
-font-size: 45px;
-color: #FFFFFF;
-padding-left: 20px;
-}
-
-.boxtitle{
-    position:relative;
-    float:left;
-    padding-left:30px;
-    top:-6px;
-    font-family:'roboto';
-    font-size:28px;
-    color:white;
-    font-weight:500;
-}
-
-.logohead{
-    position:relative;
-    float:left;
-    left:0px;
-    top:-3px;
-    width:72px;
-    height:auto;
-}
-
-
-    .textbox{
-        position: absolute;
+@section('content')
+<body>
+    <div class="textbox" 
+        style="position: absolute;
         width: 827px;
         height: 400px;
         left: 22%;
@@ -93,40 +12,19 @@ padding-left: 20px;
         border: 1px solid #B0B0B0;
         box-sizing: border-box;
         border-radius: 10px;
-        padding-right: 50px;
-    }
-    .boxhead{
-        position: relative;
+        padding-right: 50px;">
+        <div class="boxhead" 
+        style="position: relative;
         width: 826px;
         height: 60px;
         left: 0px;
         top: 0px;
         background-color: #929697;
-        border-radius: 10px 10px 0px 0px;
-    }
-    form{
-        position:relative;
-        padding-top:50px;
-    }
-    .button{
-        background-color: #1b98e0;
-        color:white;
-    }
-</style>
-<body>
-    <header>
-
-            <a class="links" href="">Username</a>
-            <a class="links" href="">Home</a>
-            <a class="links" href="">Logged in as ...</a>
-            <img class="logohead" src="LOGO_again.png">
-            <p class="title">CHECKMATE</p>
-    </header>
-    <div class="textbox">
-        <div class="boxhead">
+        border-radius: 10px 10px 0px 0px;">
             <h3 class="boxtitle">Login</h3>
         </div>
-            <form class="form-horizontal" action="{{route('login')}}">
+            <form class="form-horizontal" action="{{route('login')}}" method="post" style="position:relative;
+        padding-top:50px;">
             @csrf
                   <div class="form-group">
                         <label class="control-label col-sm-2" for="email">Email:</label>
@@ -162,14 +60,15 @@ padding-left: 20px;
                     <div class="form-group">        
                     <div class="col-sm-offset-2 col-sm-10">
                       <div class="checkbox">
-                        <input type="checkbox" name="remember" class="form-check-input" id="remember" {{old('remember') ?'checked':''}}> 
+                        <input type="checkbox" name="remember" class="form-check-input" id="remember"> 
                         <label for="remember">Remember me</label>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">        
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-default button">Login</button>
+                      <button type="submit" class="btn btn-default button" style=" background-color: #1b98e0;
+        color:white;">Login</button>
                     </div>
                   </div>
                 </form>
