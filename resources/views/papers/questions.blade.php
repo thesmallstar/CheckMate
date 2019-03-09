@@ -140,7 +140,10 @@ View/Edit them here: <a href="{{$paper->id}}/edit/"> Questions</a>
               </div>
               <form method="post" action="{{$paper->id}}/check" enctype="multipart/form-data">
                 {{csrf_field()}}
-              
+                <div class="form-group">
+                       <input class="form-control"type="text" name="roll" Placeholder="Enter Roll number">
+
+                      </div>
                       <div class="input-group control-group increment" >
                         <input type="file" name="filename[]" class="form-control">
                         <div class="input-group-btn"> 
@@ -156,7 +159,7 @@ View/Edit them here: <a href="{{$paper->id}}/edit/"> Questions</a>
                         </div>
                       </div>
               
-                      <button type="submit" class="btn btn-primary" style="margin-top:10px">Submit</button>
+                      <button type="submit" class="btn btn-primary" style="margin-top:10px">Check</button>
               
                 </form>        
                 </div>

@@ -9,7 +9,7 @@
     <style>
 
         body{
-            background-image: url(back1.png);
+            background-image: url(https://github.com/thesmallstar/CheckMate/blob/master/resources/views/back1.png?raw=true);
             background-size: cover;
             font-family: 'source sans pro', sans-serif;
         }
@@ -80,7 +80,7 @@
       <a class="link" href="">Login</a>-->
       <a class="link" href="">Documentation</a>
       <a class="link" href="">About</a>
-      <img class="logo" src="logo_that_shall_not_be_named.png">
+      <img class="logo" src="https://github.com/thesmallstar/CheckMate/blob/master/resources/views/logo_that_shall_not_be_named.png?raw=true">
     </header>
     <h1 class="t1">CHECKMATE</h1>
 </body>
