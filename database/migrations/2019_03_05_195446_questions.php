@@ -18,7 +18,7 @@ class Questions extends Migration
             $table->integer('sp');
             $table->integer('evaltype');
             $table->integer('number');
-            $table->integer('marks'); 
+            $table->string('marks'); 
             $table->timestamps();
         });
     }

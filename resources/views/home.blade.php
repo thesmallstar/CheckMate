@@ -37,6 +37,7 @@
                         <th scope="col">Number of Questions</th>
                         <th scope="col">Total Marks</th>
                         <th scope="col">Status</th>
+                        <th scope="col"></th>
                       </tr>
                     </thead>
                     <?php  $i=1 ?>    
@@ -50,6 +51,8 @@
                        <td>{{$paper->numQ}}</td>
                        <td>{{$paper->total}}</td>
                        <td>{{$paper->status}}</td>
+                       <td><a href="papers/{{$paper->id}}/result">View Result</a></td>
+
                       </tr>
                       <?php $i++ ?>
                       @endforeach

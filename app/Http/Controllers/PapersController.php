@@ -55,8 +55,8 @@ class PapersController extends Controller
      public function viewresult($id)
      {
        $paper = \App\Paper::find($id);
-       $results = $paper->results->iska;
-        dd($results);
+       $results = $paper->results;
+    //    dd($results);
        return view("papers/results", compact('paper','results'));
 
      }
