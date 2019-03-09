@@ -1,84 +1,77 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="type" class="col-md-4 col-form-label text-md-right">I am</label>
-
-                            <div class="col-md-6">
-                                <select class="form-control" id="type" name="type">
-                                    <option value="0">Student</option>
-                                    <option value="1">Teacher</option>
-                                  </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<body>
+    <div class="textbox" 
+        style="position: absolute;
+        width: 827px;
+        height: 400px;
+        left: 22%;
+        top: 243px;
+        background: #FFFFFF;
+        border: 1px solid #B0B0B0;
+        box-sizing: border-box;
+        border-radius: 10px;
+        padding-right: 50px;">
+        <div class="boxhead" 
+        style="position: relative;
+        width: 826px;
+        height: 60px;
+        left: 0px;
+        top: 0px;
+        background-color: #929697;
+        border-radius: 10px 10px 0px 0px;">
+            <h3 class="boxtitle">Login</h3>
         </div>
+            <form class="form-horizontal" action="{{route('login')}}" method="post" style="position:relative;
+        padding-top:50px;">
+            @csrf
+                  <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">Email:</label>
+                        <div class="col-sm-10">
+                          <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                          @if($errors->has('email'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('email')}}</strong>
+                            </span>
+                        @endif
+                        </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Password:</label>
+                    <div class="col-sm-10">          
+                      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+                      @if ($errors->has('password'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                  </div>
+                  <div class="form-group">
+                        <label class="control-label col-sm-2" for="iam">I am:</label>
+                          <div class="col-sm-10">
+                                  <select class="form-control" id="type" name="type">
+                                          <option value="0">Student</option>
+                                          <option value="1">Teacher</option>
+                                  </select>
+                          </div>
+                    </div>
+                    <div class="form-group">        
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <div class="checkbox">
+                        <input type="checkbox" name="remember" class="form-check-input" id="remember"> 
+                        <label for="remember">Remember me</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">        
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default button" style=" background-color: #1b98e0;
+        color:white;">Login</button>
+                    </div>
+                  </div>
+                </form>
     </div>
-</div>
-@endsection
+</body>
+</html>
