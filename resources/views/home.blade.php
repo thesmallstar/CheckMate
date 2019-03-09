@@ -5,12 +5,13 @@
 <body>
     <div class="textbox" style="position: absolute;
         width: 1050px;
-        height: 700px;
+        height: 500px;
         left: 22%;
         top: 243px;
         background: #FFFFFF;
         border: 1px solid #B0B0B0;
         box-sizing: border-box;
+        padding-bottom:50px;
         border-radius: 10px;">
         <div class="boxhead" style="position: relative;
         width: 1049px;
