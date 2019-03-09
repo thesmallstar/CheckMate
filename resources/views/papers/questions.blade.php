@@ -47,10 +47,10 @@
                                                 <div class="form-group col-md-">
                                                         <label for="typec{{$i}}">Type of Checking</label>
                                                         <select class="form-control" id="typec{{$i}}" name="typec{{$i}}">
-                                                          <option value="1">Exact syntactic</option>
-                                                          <option value="2">Exact non syntactic</option>
-                                                          <option value="3">Lenient Non Exact</option>
-                                                          <option value="4">Non Lenient Non Exact</option>
+                                                          <option value="0">Exact syntactic</option>
+                                                          <option value="1">Exact non syntactic</option>
+                                                          <option value="2">Lenient Non Exact</option>
+                                                          <option value="3">Non Lenient Non Exact</option>
                                                           
 
                                                         </select>

@@ -1,23 +1,22 @@
 <?php
 namespace App\Http\Controllers;
 global $smscr;
-define("MINEX",0.80);
+define("MINEX",0.60);
 define ("MINLEN",0.40);
-define ("MINMID",0.60);
+define ("MINMID",0.80);
 use Illuminate\Http\Request;
 
 function spchk($str)
 { 
-    $str="hellu hui";
+    //echo $str;
     $k=str_replace(' ','+',$str);
     $response = \Unirest\Request::get("https://montanaflynn-spellcheck.p.rapidapi.com/check/?text=".$k,
     array(
       "X-RapidAPI-Key" => "57fab39c6cmsha7d7a9a4a717202p1e4403jsn29e1e96daf4f"
     )
 
-  ); /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
- 
-    return $response->body->suggestion;
+  );
+    return $str;
 }
 function llemm($str)
 {
@@ -35,9 +34,11 @@ function listconv($str,$question)
 {
     if ($question->type == 3 or $question->type == 4 or $question->type == 5 )
     {
-        $stra = preg_split("/[0-9]+\./", $str);
+        $stra = preg_split("/[0-9]+[)\]]/", $str);
+       
         $p = count($stra);
-        for ($i=0;$i<$p;$i++) $stra[i] = $stra[i+1];
+        for ($i=0;$i<$p-1;$i++) $stra[$i] = $stra[$i+1];
+
         return $stra;
     }
     else{
@@ -77,25 +78,23 @@ function listeval($refo,$refl,$studo,$studl,$key,$question)
     $m = $question->marks;
     $me = ($m)/($n); 
     $scr;
-    //dd($me);
     for ($i=0 ;$i<($question->numP) ;$i++){
      
-        if($question->typec==0){
+        if($question->evaltype==0){
             $scr[$i] = ex($refo[$i],$studo[$i],$me,$i);
         }
-        else if($question->typec==1){
+        else if($question->evaltype==1){
             $scr[$i] = exnonsyn($refo[$i],$studo[$i],$me,$i);
         }
-        else if($question->typec==2){
+        else if($question->evaltype==2){
             $scr[$i] = len($refo[$i],$refl[$i],$studo[$i],$studl[$i],$key,$me,$i);
         }
-        else if($question->typec==3){
+        else if($question->evaltype==3){
             $scr[$i] = nonlen($refo[$i],$refl[$i],$studo[$i],$studl[$i],$key,$me,$i);
         }
     }
     $marks = 0;
     arsort($scr);
-  //  dd($scr[0]);
     for ($i = 0; $i<$n ; $i++)  $marks = $marks + $scr[$i];
     return $marks; 
 }
@@ -110,8 +109,9 @@ function simscr($refo,$studo)
 
 function smchk($str1,$str2)
 {
-    $m = str_replace(' ','+',$str1) ;
+    $m = str_replace(' ','+',$str1);
     $k= str_replace(' ','+',$str2);
+  //  dd($str2);
   $l="https://twinword-text-similarity-v1.p.rapidapi.com/similarity/?text1=".$m."&text2=".$k;
     
     $response = \Unirest\Request::get("$l",
@@ -119,16 +119,15 @@ function smchk($str1,$str2)
     "X-RapidAPI-Key" => "0d4592612amsh2e69e9506883a6cp128a49jsn81286e4ac028"
   )
 );
-   
-    return $response->body->similarity;
+    $sim= $response->body->similarity;
+    // dd($response);
+    return $sim;
 }
 
-/* Evaluations */
 
 function ex($re,$stu,$me,$i)
 {
     global $smscr;
-   
     if ($smscr[$i]==1) return $me;
     else return 0;
 }
@@ -137,7 +136,7 @@ function exnonsyn($ref,$stud,$me,$i)
 {
     global $smscr;
     if ($smscr[$i] > MINEX){
-        return (1 - (1-$smscr[i])/(1-MINEX))*$me;
+        return (1 - (1-$smscr[$i])/(1-MINEX))*$me;
     } else return 0;
 }
 
@@ -149,28 +148,28 @@ function len($refo,$refl,$studo,$studl,$key,$me,$i)
         $e = exkey($studl,$key,$me,$i);
         $me1 = $me - $e;
         if ($me1 > 0.7 * $me){ $k = sentanlz($studl,$key,$me,$me1,$i); $me1 = $me1 - $k;} 
-        if ($me1 > 0.3 * $me){ $p = reskey($studl,$key,$me,$me1,$i); $me1 = $me1 - $p;}
+        //if ($me1 > 0.3 * $me){ $p = reskey($studl,$key,$me,$me1,$i); $me1 = $me1 - $p;}
         return $me1;        
     }
     else {return 0;}
 }
 
 function nonlen($refo,$refl,$studo,$studl,$key,$me,$i)
-{
-    if ($smscr[$i]>MINMID){
+{ global $smscr; 
+    if ($smscr[$i]>=MINMID){
         $me1 = $me; 
         $e = exkey($studl,$key,$me,$i);
         $me1 = $me - $e;
         if ($me1 > 0.7 * $me){ $k = sentanlz($studl,$key,$me,$me1,$i); $me1 = $me1 - $k;} 
-        if ($me1 > 0.3 * $me){ $p = reskey($studl,$key,$me,$me1,$i); $me1 = $me1 - $p;}
+        //if ($me1 > 0.3 * $me){ $p = reskey($studl,$key,$me,$me1,$i); $me1 = $me1 - $p;}
         return $me1;        
     }
-    else if (MINLEN<$smscr[$i] and $smscr[$i]< MINMID){
-        $me1 = (1 - (MINMID-$smscr[i])/(MINMID-MINLEN))*$me;
+    else if (MINLEN < $smscr[$i] and $smscr[$i]< MINMID){
+        $me1 = (1 - (MINMID-$smscr[$i])/(MINMID-MINLEN))*$me;
         $e = exkey($studl,$key,$me1,$i);
         $me1 = $me1 - $e;
         if ($me1 > 0.7 * $me){ $k = sentanlz($studl,$key,$me,$me1); $me1 = $me1 - $k;} 
-        if ($me1 > 0.3 * $me){ $p = reskey($studl,$key,$me,$me1); $me1 = $me1 - $p;}
+        //if ($me1 > 0.3 * $me){ $p = reskey($studl,$key,$me,$me1,$i); $me1 = $me1 - $p;}
         return $me1;
     }
     else return 0;
@@ -186,23 +185,31 @@ function exkey($studl, $key, $m,$i)
         $str = $x->answer;
         $stra = preg_split("/;/", strtolower($str));
         $n= count($stra);
+     //   dd($stra);
         $mar = $x->mark;
         $mara =  preg_split("/;/", strtolower($mar));
         $j = 0;
         foreach ($stra as $p){
             $pos = strpos(strtolower($studl),$p);
+          //  echo $p;
             if ($pos==FAlSE){
-                /*if ($t<0.5*$m) $t = $t - $m/(($n)*($n));
-                else $t = $t - $m/($n);*/
-                $t = $t - $mara[$j];
-                if ($t<=0){$t=0; break;}
+             //   echo $p;
+                if ($t<0.5*$m) $t = $t - $m/(($n)*($n));
+                else 
+                $t = $t - $m/($n);
+       //         echo $m." ";
+                /*$t = $t - $mara[$j];
+                if ($t<=0){$t=0; break;}*/
             }
             $j++;
+           
         }
+     //1   dd();
         break;
     }
     $v++;
     }
+    if ($t<0) $t =0;
     return ($m-$t);
 }
 
@@ -322,8 +329,11 @@ class CheckController extends Controller
         foreach($questions as $question)
         { 
             $keywords=$question->keywords;
+            if ($answers[0]==NULL) $k =$k+1;
             if ($question->sp==0) {$ref = spchk($keywords[0]->answer); $stud = spchk($answers[$k]);}
+            //dd($stud);
             $refo = listconv($ref,$question); $studo = listconv($stud,$question);
+           // dd($studo);
             $refl = llemm($refo); $studl = llemm($studo);
             $key = klem($keywords);
             $marks = analyz($refo,$refl,$studo,$studl,$key,$question);

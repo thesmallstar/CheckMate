@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
- 
+
 <body>
     <div class="textbox" style="position: absolute;
         width: 1050px;
