@@ -202,7 +202,10 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}1">User</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Moderator</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
@@ -216,9 +219,9 @@
                                 <li class="nav-item">
                                         <a class="nav-link" style="color:black;">
                                          @if(Auth::user()->type)
-                                             Logged in as Teacher
+                                             Logged in as Moderator
                                          @else
-                                         Logged in as Student
+                                         Logged in as User
                                          @endif
 
                                         </a>

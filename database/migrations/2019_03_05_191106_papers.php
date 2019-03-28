@@ -13,14 +13,13 @@ class Papers extends Migration
      */
     public function up()
     {
-        Schema::create('papers', function (Blueprint $table) {
+        Schema::create('p', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('des');
             $table->integer('Tid');
             $table->integer('status');
-            $table->integer('total');
-            $table->integer('numQ');
+            $table->integer('phone');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class Papers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('papers');
+        Schema::dropIfExists('amb');
     }
 }

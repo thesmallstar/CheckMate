@@ -43,17 +43,17 @@
 
                             <div class="col-md-6">
                                 <select class="form-control" id="type" name="type" onchange="showDiv('hidden_div', this)">
-                                    <option value="0">Student</option>
-                                    <option value="1">Teacher</option>
+                                    <option value="0">User</option>
+                                    <option value="1">Moderator</option>
                                   </select>
                             </div>
                         </div>
              <div id="hidden_div">
                         <div class="form-group row" >
-                            <label for="roll" class="col-md-4 col-form-label text-md-right">Roll No</label>
+                            <label for="roll" class="col-md-4 col-form-label text-md-right">Mobile Number</label>
 
                             <div class="col-md-6" >
-                                <input id="roll" type="text" class="form-control" name="roll" autofocus>
+                                <input id="roll" type="number" class="form-control" name="roll" autofocus>
                             </div>
                         </div>
              </div>
@@ -95,10 +95,5 @@
     </div>
 </div>
 
-<script>
-function showDiv(divId, element)
-{
-    document.getElementById(divId).style.display = element.value == 0 ? 'block' : 'none';
-}
-</script>
+
 @endsection

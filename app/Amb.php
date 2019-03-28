@@ -4,12 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Paper extends Model
+class amb extends Model
 {
     protected $fillable = [
         'name', 'des', 'total','numq','status','numP','numC','sp'
     ];
      
+ //   protected $table = 'amb';
     public function questions()
     {
 

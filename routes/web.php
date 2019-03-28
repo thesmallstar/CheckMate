@@ -19,11 +19,14 @@ Route::get('/', function () {
 
 
 // Text Recog routes.
-Route::get('/annotate', 'AnnotationController@displayForm');
-Route::post('/annotate', 'AnnotationController@annotateImage');
+
 
 //Authentication Routes.
 Auth::routes();
+
+Route::get('/Ambs/create', function () {
+    return view('add');
+});
 
 
 //----After login routes.----
@@ -31,24 +34,20 @@ Auth::routes();
 //Home
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Paper routes
 
 
-//view paper
-Route::get('/papers/','PapersController@index');
 
-//Add a paper
-Route::get('/papers/create','PapersController@create');
-Route::post('/papers/create','PapersController@add');
+//view ambu
+Route::get('/Ambs/','AmbsController@index');
+Route::post('/Ambs/create','AmbsController@add');
+Route::get('/Ambs/{id}','AmbsController@view');
+Route::get('/Ambs/{aid}/b/{uid}','AmbsController@book');
 
-//Add a question
-Route::get('/papers/{id}','PapersController@addQuestions');
-Route::post('/papers/{id}','PapersController@submitQuestions');
+Route::get('/login1', function () {
+    return view('auth.login1');
+});
 
-//Check paper
-Route::post('/papers/{id}/check','CheckController@checkmate');
 
-Route::get('/papers/{id}/result','PapersController@viewresult');
 
 
 
